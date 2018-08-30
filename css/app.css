@@ -1,0 +1,299 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+    font-family: 'Coda', cursive;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+/*
+ * Styles for the deck of cards
+ */
+
+.deck {
+    width: 660px;
+    min-height: 680px;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 3em;
+}
+
+.deck .card {
+    height: 125px;
+    width: 125px;
+    background: #2e3d49;
+    font-size: 0;
+    color: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+}
+
+.deck .card.open {
+    transform: rotateX(0);
+    background: #02b3e4;
+    cursor: default;
+    animation-name:flipInX;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+    animation-duration: .60s;
+}
+
+.deck .card.show {
+    font-size: 33px;
+}
+
+.deck .card.match {
+    cursor: default;
+    background: #02ccba;
+    font-size: 33px;
+    animation-name: flipInY;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+    animation-duration: .60s;
+}
+
+.deck .card.unmatched{
+  animation-name: jello;
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+  animation-duration: .60s;
+  background: #ff00ff;
+}
+
+.deck .card.disabled{
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/*
+ * Styles for the Score Panel
+ */
+
+.score-panel {
+    text-align: center;
+    width: 345px;
+    margin-bottom: 10px;
+}
+
+.score-panel .stars {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+
+.score-panel .stars li {
+    list-style: none;
+    display: inline-block;
+}
+
+.restart {
+    float: inherit;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.fa-star {
+  color: #00ff00;
+}
+
+.timer .score-panel .restart{
+  display: inline-block;
+  padding-right: 1rem;
+  text-align: center;
+}
+
+/* winner screen*/
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, .5);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+  text-align: center;
+}
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 20%;
+  padding: 20px;
+  background: #e5f442;
+  border-radius: 1px;
+  width: 20%
+  position: fixed;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #42b9f4;
+}
+
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #42b9f4;
+}
+
+.popup .close:hover {
+  color: #495e68;
+}
+
+.popup .content1 {
+  max-height: 30%;
+  overflow: auto;
+  text-align: center;
+}
+
+.show {
+  visibility: visible !important;
+  opacity: 100 !important;
+}
+
+#starRating li {
+  display: inline-block;
+}
+
+#play-again {
+  background-color: #141214;
+  padding: 0.7rem 1rem;
+  font-size: 1.1rem;
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  color: #ffffff;
+  border-radius: 5px;
+}
+
+/*animations*/
+@@keyframes flipInX {
+  from{
+    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  40%{
+    transform-origin: perspective(400px) rotate3d(0,1,0,-20deg);
+    animation-timing-function: ease-in;
+  }
+
+  60%{
+    transform: perspective(400px) rotate3d(0,1,0,10deg);
+    opacity: 1;
+  }
+
+  80%{
+    transform: perspective(400px) rotate3d(0,1,0,-5deg);
+  }
+
+  to{
+    transform: perspective(400px);
+  }
+}
+
+@@keyframes flipInY {
+  from{
+    transform:scale3d(1,1,1);
+  }
+
+  30%{
+    transform: scale3d(1.25,0.75,1);
+  }
+
+  40%{
+    transform: scale3d(0.75, 1.25,1);
+  }
+
+  50%{
+    transform: scale3d(1.15,0.85,1);
+  }
+
+  65%{
+    transform: scale3d(0.95,1.05,1);
+  }
+
+  75%{
+    transform: scale3d(1.05, 0.95, 1);
+  }
+
+  to{
+    transform: scale3d(1,1,1);
+  }
+}
+
+@@keyframes jello {
+  from{
+    transform: scale3d(1,1,1);
+  }
+
+  50%{
+    transform: scale3d(1.2, 1.2, 1.2);
+  }
+
+  to{
+    transform: scale3d(1,1,1);
+  }
+}
+
+/*smaller phones*/
+@media (max-width: 361px) {
+	.deck {
+		width: 87%;
+	}
+
+	.deck .card {
+		height: 6rem;
+		width: 3.8rem;
+	}
+}
