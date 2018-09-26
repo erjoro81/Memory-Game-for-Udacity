@@ -67,7 +67,7 @@ h1 {
 
 .deck .card.open {
     transform: rotateX(0);
-    background: #02b3e4;
+    background: #800080;
     cursor: default;
     animation-name:flipInX;
     -webkit-backface-visibility: visible !important;
@@ -81,20 +81,20 @@ h1 {
 
 .deck .card.match {
     cursor: default;
-    background: #02ccba;
+    background: #ff00ff;
     font-size: 33px;
-    animation-name: flipInY;
+    animation-name: jello;
+    -webkit-transform: translate3d(0,0,0);
     -webkit-backface-visibility: visible !important;
-    backface-visibility: visible !important;
-    animation-duration: .60s;
+    animation-duration: .60ms;
 }
 
-.deck .card.unmatched{
-  animation-name: jello;
-  -webkit-backface-visibility: visible !important;
-  backface-visibility: visible !important;
+.deck .card{
+  animation-name: flipInY;
+  -webkit-transform: translate3d(0,0,0);
+  -webkit-backface-visibility: hidden !important;
   animation-duration: .60s;
-  background: #ff00ff;
+  background:  #02ccba;
 }
 
 .deck .card.disabled{
@@ -216,7 +216,7 @@ h1 {
 }
 
 /*animations*/
-@@keyframes flipInX {
+@keyframes flipInX {
   from{
     transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
     animation-timing-function: ease-in;
@@ -242,7 +242,7 @@ h1 {
   }
 }
 
-@@keyframes flipInY {
+@keyframes flipInY {
   from{
     transform:scale3d(1,1,1);
   }
@@ -272,7 +272,7 @@ h1 {
   }
 }
 
-@@keyframes jello {
+@keyframes jello {
   from{
     transform: scale3d(1,1,1);
   }
