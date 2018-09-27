@@ -61,12 +61,14 @@ function startGame(){
   clearInterval(interval);
 };
 
+// toggles classes to display cards
 var displayCard = function(){
   this.classList.toggle("open");
   this.classList.toggle("show");
   this.classList.toggle("disabled");
 };
 
+//check ro see if cards are a match
 function cardOpen(){
   openedCards.push(this);
   var len = openedCards.length;
@@ -80,6 +82,7 @@ function cardOpen(){
   }
 };
 
+//what to do with a match cards
 function matched(){
   openedCards[0].classList.add("match", "disabled");
   openedCards[1].classList.add("match", "disabled");
@@ -88,6 +91,7 @@ function matched(){
   openedCards = [];
 };
 
+//what to do with cards that do not match
 function unmatched(){
   openedCards[0].classList.add("unmatched");
   openedCards[1].classList.add("unmatched");
@@ -100,6 +104,7 @@ function unmatched(){
   },1100);
 };
 
+//enable and disable cards.
 function disable(){
   Array.prototype.filter.call(cards, function(card){
     card.classList.add("disabled");
@@ -147,6 +152,7 @@ var timer = document.querySelector(".timer");
 
 var interval;
 
+//timer for the game
 function startTimer(){
   interval = setInterval(function(){
     timer.innerHTML = minute + " mins "+second + " secs ";
@@ -162,7 +168,7 @@ function startTimer(){
   },1000);
 };
 
-//popup display card
+//popup display card for winning
 function congratulations(){
   if (matchedCard.length == 16){
     clearInterval(interval);

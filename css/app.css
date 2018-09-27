@@ -33,9 +33,7 @@ h1 {
     font-weight: 300;
 }
 
-/*
- * Styles for the deck of cards
- */
+/*Styles for the deck of cards*/
 
 .deck {
     width: 660px;
@@ -102,9 +100,7 @@ h1 {
   opacity: 0.9;
 }
 
-/*
- * Styles for the Score Panel
- */
+/*Styles for the Score Panel*/
 
 .score-panel {
     text-align: center;
