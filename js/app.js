@@ -18,7 +18,7 @@ let closeicon = document.querySelector(".close");
 
 let modal = document.getElementById("popup1");
 
-var openedCards = [];
+let openedCards = [];
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -146,13 +146,13 @@ function moveCounter(){
   }
 };
 
+//timer for the game
 var second = 0, minute = 0; hour = 0;
 
 var timer = document.querySelector(".timer");
 
 var interval;
 
-//timer for the game
 function startTimer(){
   interval = setInterval(function(){
     timer.innerHTML = minute + " mins "+second + " secs ";
@@ -182,6 +182,7 @@ function congratulations(){
   };
 };
 
+//close icon for modal
 function closeModal(){
   closeicon.addEventListener("click", function(e){
     modal.classList.remove("show");
@@ -189,11 +190,13 @@ function closeModal(){
   });
 };
 
+//gives modal the option to play again
 function playAgain(){
   modal.classList.remove("show");
   startGame();
 };
 
+//adds event listeners to the cards
 for (var i = 0; i < cards.length; i++){
   card = cards[i];
   card.addEventListener("click", displayCard);
